@@ -1,3 +1,11 @@
+#######################
+# start JMK 
+ON
+*.xml
+.on_change
+.DS_Store
+# end JMK
+#######################
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
