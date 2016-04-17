@@ -15,7 +15,21 @@ class test_assignment1 (unittest.TestCase):
 		self.assertAlmostEqual(utilities.linear_to_dB(2.06e-14), hw1.Q1(),3)
 		pass		
 
+	def test_Q2 (self):
+		self.assertAlmostEqual(utilities.linear_to_dB(7.45e-15), hw1.Q2(),0)
+		pass		
 
+	def test_Q3 (self):
+		self.assertAlmostEqual(4.42, hw1.Q3(),0)
+		pass		
+
+	def test_Q4 (self):
+		(a1,a2,a3,a4) = hw1.Q4()
+		self.assertAlmostEqual(-129.17, a1,1)
+		self.assertAlmostEqual(-129.17, a2,1)
+		self.assertAlmostEqual(-118.65, a3,1)
+		self.assertAlmostEqual(-119.17, a4,1)
+		pass		
 
 
 # take every test in this class and use it to define a suite
