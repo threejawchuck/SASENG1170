@@ -19,7 +19,9 @@ def freq_to_wavelength_dB (F_dB):
 
 # Global Values
 ThePi = 3.14159265359
-TheSpeedOfLight = 299792458.0 # in meters per second
+#TheSpeedOfLight = 299792458.0 # in meters per second
+TheSpeedOfLight = 3e8 # in meters per second
 TheSpeedOfLight_dB = linear_to_dB (TheSpeedOfLight)
-TheBoltzmanConstant = 1.38064852e-23 # in m^2 * kg * s^-2 * K^-1
+#TheBoltzmanConstant = 1.38064852e-23 # in m^2 * kg * s^-2 * K^-1
+TheBoltzmanConstant = 1.38e-23 # in m^2 * kg * s^-2 * K^-1
 TheBoltzmanConstant_dB = linear_to_dB (TheBoltzmanConstant)
