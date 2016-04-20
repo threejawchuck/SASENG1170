@@ -182,11 +182,17 @@ def Q5 ():
 
 def Q6_linear ():
 	# the text is recommending that the calculation be done in linear though i can't image why it matters.  
+
 	# global given
 	S_dB = linear_to_dB (1) # Target RCS in dBSM
 	R_dB = linear_to_dB (3.6e4) # Target Range in dBMeters
 	B_dB = linear_to_dB (10e6) # Bandwidth in dBHz
 	F_dB = [3.2, 3.2, 2.7, 3.2] # Noise figure for the four radars GHz system
+	Ltx_dB = 2.1
+	Lrx_dB = 4.3
+	Ltx = dB_to_linear (Ltx_dB)
+	Lrx = dB_to_linear (Lrx_dB)
+	Ls = Ltx * Lrx
 
 	#radar 1
 	Tp_dB = linear_to_dB (2.5e4)  #Peak Tranmission power in dB Watts
@@ -194,53 +200,59 @@ def Q6_linear ():
 	L_dB = linear_to_dB (freq_to_wavelength(9.4e9)) # Converted from Carrier Frequency in Hertz to avoid confusion with F the noise figure
 	Pn = receiver_noise_power (dB_to_linear(F_dB[0]), dB_to_linear(B_dB)) # the power of the noise
 	Pr = radar_range_eq (dB_to_linear(Tp_dB), dB_to_linear(G_dB), dB_to_linear(G_dB), dB_to_linear(L_dB), dB_to_linear(S_dB), dB_to_linear(R_dB))
-	print Pn
-	print Pr
+	a1 = Pr / (Pn * Ls)
 
-	Ltx_dB = 2.1
-	Lrx_dB = 4.3
-	Ls_dB =  Lrx_dB + Ltx_dB
-	print Ls_dB
-	print dB_to_linear (Ls_dB)
+	#radar 2
+	Tp_dB = linear_to_dB (2.5e5)  #Peak Tranmission power in dB Watts
+	G_dB = 31 # Antenna Gain in dB, used for both transmission and receiving (i.e. monostatic)
+	L_dB = linear_to_dB (freq_to_wavelength(9.4e9)) # Converted from Carrier Frequency in Hertz to avoid confusion with F the noise figure
+	Pn = receiver_noise_power (dB_to_linear(F_dB[1]), dB_to_linear(B_dB)) # the power of the noise
+	Pr = radar_range_eq (dB_to_linear(Tp_dB), dB_to_linear(G_dB), dB_to_linear(G_dB), dB_to_linear(L_dB), dB_to_linear(S_dB), dB_to_linear(R_dB))
+	a2 = Pr / (Pn * Ls)
 
-	Ltx = dB_to_linear (Ltx_dB)
-	print "-------------"
-	print Ltx
-	Lrx = dB_to_linear (Lrx_dB)
-	print Lrx
-	Ls = Ltx * Lrx
-	print Ls
-	print Ltx + Lrx
-	print linear_to_dB (Ls)
+	#radar 3
+	Tp_dB = linear_to_dB (2.5e5)  #Peak Tranmission power in dB Watts
+	G_dB = 31 # Antenna Gain in dB, used for both transmission and receiving (i.e. monostatic)
+	L_dB = linear_to_dB (freq_to_wavelength(2.8e9)) # Converted from Carrier Frequency in Hertz to avoid confusion with F the noise figure
+	Pn = receiver_noise_power (dB_to_linear(F_dB[2]), dB_to_linear(B_dB)) # the power of the noise
+	Pr = radar_range_eq (dB_to_linear(Tp_dB), dB_to_linear(G_dB), dB_to_linear(G_dB), dB_to_linear(L_dB), dB_to_linear(S_dB), dB_to_linear(R_dB))
+	a3 = Pr / (Pn * Ls)
 
-	answers = [-1, -1, -1, -1]
-	print "-------------"
-	a1 = (Pr/Pn) * (1.0/Ls)
-	print a1
-	a1_dB = linear_to_dB (a1)
-	print a1_dB
-	print '************'
+	#radar 4
+	Tp_dB = linear_to_dB (2.5e5)  #Peak Tranmission power in dB Watts
+	G_dB = 36 # Antenna Gain in dB, used for both transmission and receiving (i.e. monostatic)
+	L_dB = linear_to_dB (freq_to_wavelength(9.4e9)) # Converted from Carrier Frequency in Hertz to avoid confusion with F the noise figure
+	Pn = receiver_noise_power (dB_to_linear(F_dB[3]), dB_to_linear(B_dB)) # the power of the noise
+	Pr = radar_range_eq (dB_to_linear(Tp_dB), dB_to_linear(G_dB), dB_to_linear(G_dB), dB_to_linear(L_dB), dB_to_linear(S_dB), dB_to_linear(R_dB))
+	a4 = Pr / (Pn * Ls)
 
-	
-	answers = [-1,-1,-1,-1]
-	return answers
-
+	return [a1, a2, a3, a4]
 
 def Q6 ():
+	# global givens
+	Lt_dB = 2.1
+	Lr_dB = 4.3
+	Ls_dB = Lt_dB + Lr_dB
+
 	SNR = Q5()
-	print SNR
-	#answer = answer - (2.1 + 4.3)
 	answers = []
-	print answers
 	for a in SNR:
-		answers.append(a - (2.1 + 4.3))
-
-	print answers 
-
+		answers.append(a - (Ls_dB))
 	return answers;
 
+def Q7 ():
+	# global givens
+	R = 36 # Range in KILOMETERS
+	La_dB = 36 * 0.12 # two way atmospheric loss for range of 36k
+	Lt_dB = 2.1
+	Lr_dB = 4.3
+	Ls_dB = Lt_dB + Lr_dB + La_dB
 
-
+	SNR = Q5()
+	answers = []
+	for a in SNR:
+		answers.append(a - (Ls_dB))
+	return answers;
 
 
 

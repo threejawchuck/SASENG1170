@@ -26,10 +26,10 @@ class test_assignment1 (unittest.TestCase):
 
 	def test_Q4 (self):
 		(a1,a2,a3,a4) = hw1.Q4()
-		self.assertAlmostEqual(-129.1691, a1, self.tolerance)
-		self.assertAlmostEqual(-129.1691, a2, self.tolerance)
-		self.assertAlmostEqual(-118.6497, a3, self.tolerance)
-		self.assertAlmostEqual(-119.1691, a4, self.tolerance)
+		self.assertAlmostEqual(-129.1691278, a1, self.tolerance)
+		self.assertAlmostEqual(-129.1691278, a2, self.tolerance)
+		self.assertAlmostEqual(-118.6497314, a3, self.tolerance)
+		self.assertAlmostEqual(-119.1691278, a4, self.tolerance)
 		pass		
 
 	def test_Q5 (self):
@@ -40,21 +40,35 @@ class test_assignment1 (unittest.TestCase):
 		self.assertAlmostEqual(11.6081013, a4, self.tolerance)
 		pass		
 
-	def test_Q6 (self):
-		a = hw1.Q6()
-		# self.assertAlmostEqual(-4.74004, a[0],1)
-		# self.assertAlmostEqual(-4.74004, a[1],1)
-		# self.assertAlmostEqual(6.27936, a[2],1)
-		# self.assertAlmostEqual(5.25996, a[3],1)
-		pass		
-
 	def test_Q6_linear (self):
 		a = hw1.Q6_linear()
-		self.assertAlmostEqual(-4.74004, a[0],1)
-		self.assertAlmostEqual(-4.74004, a[1],1)
-		self.assertAlmostEqual(6.27936, a[2],1)
-		self.assertAlmostEqual(5.25996, a[3],1)
+		self.assertAlmostEqual(3.317494E-01, a[0], self.tolerance)
+		self.assertAlmostEqual(3.317494E-01, a[1], self.tolerance)
+		self.assertAlmostEqual(4.195172E+00, a[2], self.tolerance)
+		self.assertAlmostEqual(3.317494E+00, a[3], self.tolerance)
 		pass		
+
+	def test_Q6 (self):
+		a = hw1.Q6()
+		self.assertAlmostEqual(-4.79190, a[0], self.tolerance)
+		self.assertAlmostEqual(-4.79190, a[1], self.tolerance)
+		self.assertAlmostEqual(6.22750, a[2], self.tolerance)
+		self.assertAlmostEqual(5.20810, a[3], self.tolerance)
+
+		#convince ourselves that the linear and dB solutions are consistent	
+		a = hw1.Q6_linear()
+		self.assertAlmostEqual(-4.79190, utilities.linear_to_dB(a[0]), self.tolerance)
+		self.assertAlmostEqual(-4.79190, utilities.linear_to_dB(a[1]), self.tolerance)
+		self.assertAlmostEqual(6.22750, utilities.linear_to_dB(a[2]), self.tolerance)
+		self.assertAlmostEqual(5.20810, utilities.linear_to_dB(a[3]), self.tolerance)
+		pass
+
+	def test_Q7 (self):
+		a = hw1.Q7()
+		self.assertAlmostEqual(-9.1118986852, a[0], self.tolerance)
+		self.assertAlmostEqual(-9.1118986852, a[1], self.tolerance)
+		self.assertAlmostEqual(1.9074977599, a[2], self.tolerance)
+		self.assertAlmostEqual(0.8881013148, a[3], self.tolerance)
 
 
 # take every test in this class and use it to define a suite
