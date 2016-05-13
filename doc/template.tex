@@ -7,7 +7,8 @@
   
   \usepackage[margin=1in]{geometry} 
   \usepackage{amsmath,amsthm,amssymb}
-   
+  \usepackage{siunitx}
+
    \newcommand{\N}{\mathbb{N}}
    \newcommand{\Z}{\mathbb{Z}}
     
@@ -38,61 +39,175 @@
 	 
 	 \maketitle
 	  
+      % ---------------------------------------------------------------------------------------- 
       \begin{exercise}{1}
       What wavelength corresponds to a frequency of 17Ghz?
       
       \begin{align*}
       \lambda & = \frac{c}{f} & (\text{Relationship between wavelength, speed and frequency})\\
-      & = \frac{299,792,458 \frac{m}{s}}{17 Ghz}\\
-      & = 1.763485047 cm
+      & = \frac{\SI{299792458}{\meter\per\second}}{\SI{17}{\GHz}}\\
+      & = \SI{1.763485047}{\cm}
       \end{align*}
       
       \end{exercise}
       
+      % ---------------------------------------------------------------------------------------- 
       \begin{exercise}{2}
-      What would the gain of a circular antenna with a diameter of 30cm and a wavelength of 1cm be? (Assume 100% efficiency)
-      
-      G_{R} & = \frac{4 \Pi A}{\lambda^{2}} & (\text{Relationship between antenna gain, area and wavelenght})\\
-      & = \frac{4 \Pi^{2} R^{2}}{\lambda^{2}}\\
-      & = \frac{4 \Pi^{2} (0.3)^{2}}{.01^{2}}\\
-      & = \frac{3.553058}{.0001}\\
-      & = 35530.576\\
-      \end{align*}      
+      What would the gain of a circular antenna with a diameter of 30cm and a wavelength of 1cm be? (Assume 100\% efficiency)
       
       \begin{align*}
-      \lambda & = \frac{c}{f} & (\text{Relationship between wavelength, speed and frequency})\\
-      & = \frac{299,792,458 \frac{m}{s}}{17 Ghz}\\
-      & = 1.763485047 cm
-      \end{align*}
-      
+      G_{R} & = 4 \pi \frac{ A_{e} }{\lambda^{2}} & (\text{Relationship between antenna gain, area and wavelength})\\
+      & = 4 \pi^{2} \frac{ R^{2}}{\lambda^{2}}\\
+      & = 4 \pi^{2} \frac{ (\SI{0.3}{\meter})^{2}}{(\SI{.01}{\meter})^{2}}\\
+      & = 4 \pi^{2} \frac{\SI{0.09}{\meter\squared}}{\SI{.0001}{\meter\squared}}\\
+      & = \SI{35530.576}{}\\
+      \end{align*}      
+            
       \end{exercise}
       
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{3}
+      If a radar beam scans past a target at 80 deg/sec.  If the beamwidth is 3 deg, what is the dwell time?
+      \begin{align*}
+      Time & = \frac{(Angular Distance)}{(Angular Velocity)}\\
+      & = \frac{\SI{3}{\degree}}{\SI{80}{\degree\per\second}}\\
+      & = \SI{0.0375}{\second}
+      \end{align*}      
+      \end{exercise}
+
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{4}
+      Which of the following is not a factor in the radar range equation?
+
+      The radar equation is
+      \begin{align*}
+      \frac{P_{r}}{P_{n}} & = \frac{P_{t}G^{2}\lambda^{2}\sigma}{(4\pi)^{3}R^{4} k T_{0} B F}
+      \end{align*}
+      Clearly the wavelength $\lambda$, the range R and the losses F are part of the radar range eqation.  The probabilty of detection is not a factor in the radar range quation.
+      \end{exercise}
+
+      % ---------------------------------------------------------------------------------------- 
+      % FIXME
+      \begin{exercise}{5}
+      In problems 14 and 15, what would be the minimum target range with the 10:1 pulse compression?
+      \begin{align*}
+      X & = Y\\
+      & = Z
+      \end{align*}
+      \end{exercise}
+
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{6}
+      A circular antenna has a diameter of 30 cm. What would it's beamwidth be for a wavelength of 1 cm 
+
+      A uniformly illuminated circular aperture of diameter \textit{d} has the following 3 dB beamwidth
+      \begin{align*}
+      \Theta_{3 dB} & = 1.02 * \frac{\lambda}{d}\\
+      & = 1.02 * \frac{(\SI{1}{\cm})}{(\SI{30}{\cm})}\\
+      & = \SI{0.034}{\radian}\\
+      & = \frac{\SI{180}{\degree}}{\pi}\SI{0.034}{\radian}\\
+      & = \SI{1.948}{\degree}
+      \end{align*}
+      \end{exercise}
+
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{7}
+      A radar has satisfactory detection performance at 50 kM.  How much could the range be increased if the transmitter power were to be doubled?
+      \begin{align*}
+      \frac{P_{t1}G^{2}\lambda^{2}\sigma}{(4\pi)^{3}(R_{1})^{4} k T_{0} B F} & = \frac{(P_{t2})G^{2}\lambda^{2}\sigma}{(4\pi)^{3}(R_{2})^{4} k T_{0} B F}\\
+      \frac{P_{t1}}{(R_{1})^{4}} & = \frac{P_{t2}}{(R_{2})^{4}}\\
+      R_{2} & = \left[\frac{P_{t2}(R_{1})^{4})}{P_{t1}}\right]^{\frac{1}{4}}\\
+      R_{2} & = \left[2(R_{1})^{4}\right]^{\frac{1}{4}} & (\text{P$_{t2}$ is twice P$_{t1}$})\\
+%      R_{2} & = \left[2^{\frac{1}{4}}\right]R_{1}\\
+      R_{2} & = \left[2\right]^{\frac{1}{4}}\SI{50}{\km}\\
+      R_{2} & = \SI{59.460}{\km}
+      \end{align*}
+      \end{exercise}
       
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{8}
+      What SNR is required for $P_{D}$ = 50\% at a PFA of $10^{-6}$
+
+      When $P_{D}$ = 50\%, need to look up a swerling curve
+      According to table 3.2 of book on page 103, the SNR for the case when the $P_{D}$ = 50\% and the PFA of $10^{-6}$ is 11.1 to 12.8 depending upon the type of Swerling model used.
+      \end{exercise}
+
+      % ---------------------------------------------------------------------------------------- 
+      % FIXME
+      \begin{exercise}{9}
+      What is the best method for combining multiple pulse echos from the standpoint of detection performance
+      \begin{align*}
+      X & = Y\\
+      & = Z
+      \end{align*}
+      \end{exercise}
       
-	  \begin{theorem}{x.yz} %You can use theorem, proposition, exercise, or reflection here.  Modify x.yz to be whatever number you are proving
-	  Delete this text and write theorem statement here.
-	  \end{theorem}
-	   
-	   \begin{proof}
-	   Blah, blah, blah.  Here is an example of the \texttt{align} environment:
-	   %Note 1: The * tells LaTeX not to number the lines.  If you remove the *, be sure to remove it below, too.
-	   %Note 2: Inside the align environment, you do not want to use $-signs.  The reason for this is that this is already a math environment. This is why we have to include \text{} around any text inside the align environment.
-	   \begin{align*}
-	   \sum_{i=1}^{k+1}i & = \left(\sum_{i=1}^{k}i\right) +(k+1)\\ 
-	   & = \frac{k(k+1)}{2}+k+1 & (\text{by inductive hypothesis})\\
-	   & = \frac{k(k+1)+2(k+1)}{2}\\
-	   & = \frac{(k+1)(k+2)}{2}\\
-	   & = \frac{(k+1)((k+1)+1)}{2}.
-	   \end{align*}
-	   \end{proof}
-	    
-	    \begin{proposition}{x.yz}
-	    Let $n\in \Z$.  
-	    \end{proposition}
-	     
-	     \begin{proof}[Disproof]%Whatever you put in the square brackets will be the label for the block of text to follow in the proof environment.
-	     Blah, blah, blah.  I'm so smart.
-	     \end{proof}
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{10}
+      A target is moving away from a radar at \SI{50}{\meter\per\second}.  What would the doppler shift be at $\lambda$ = \SI{.03}{\meter}
+      \begin{align*}
+      f_{D} & = -2\frac{\dot{R}}{\lambda} & (\text{Where $\dot{R}$ is the range rate})\\
+      & = -2\frac{\SI{50}{\meter\per\second}}{\SI{.03}{\meter}}\\
+      & = \SI{3.333}{\kHz}
+      \end{align*}
+      \end{exercise}
+      
+      % ---------------------------------------------------------------------------------------- 
+      \begin{exercise}{11}
+      What is the limit on PRF for unambiguous range meas at \SI{50}{\km}?
+
+      The unambiguous range is related to the PRF by
+      \begin{align*}
+      PRF & = \frac{c}{2 R_{unambiguous}}\\
+      & = \frac{\SI{299792.458}{\km\per\second}}{\SI{100}{\km}}\\
+      & = \SI{2997.924}{\Hz}
+      \end{align*}
+      \end{exercise}
+      
+      % ---------------------------------------------------------------------------------------- 
+      % FIXME
+      \begin{exercise}{12}
+      What would the radar cross section of an aluminum sphere of 30 cm diameter be at 2 cm wavelength?
+      \begin{align*}
+      X & = Y\\
+      & = Z
+      \end{align*}
+      \end{exercise}
+      
+      % ---------------------------------------------------------------------------------------- 
+      % FIXME
+      \begin{exercise}{13}
+      In problem 3, what would be the minimum doppler filter width
+      \begin{align*}
+      X & = Y\\
+      & = Z
+      \end{align*}
+      \end{exercise}
+      
+      % ---------------------------------------------------------------------------------------- 
+      % FIXME
+      \begin{exercise}{14}
+      A radar achieves a SNR=10 dB on a particular using a 10 usec unmodulated pulse.  What would the SNR be if we implemented a 10:1 pulse compression code modulation on this pulse?  
+      \begin{align*}
+      X & = Y\\
+      & = Z
+      \end{align*}
+      \end{exercise}
+      
+      % ---------------------------------------------------------------------------------------- 
+      % FIXME
+      \begin{exercise}{15}
+      In the problem 14, what would the range resolution be in meters with the 10:1 pulse compression      
+      \begin{align*}
+      X & = Y\\
+      & = Z
+      \end{align*}
+      \end{exercise}
+
+
+
+
+      
 	      
 	      % --------------------------------------------------------------
 	      %     You don't have to mess with anything below this line.

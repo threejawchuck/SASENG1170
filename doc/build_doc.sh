@@ -1,3 +1,3 @@
 #!/bin/bash
-pdflatex *.tex
 
+pdflatex --halt-on-error template.tex
