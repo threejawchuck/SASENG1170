@@ -144,7 +144,7 @@
       
       % ---------------------------------------------------------------------------------------- 
       \begin{exercise}{10}
-      A target is moving away from a radar at \SI{50}{\meter\per\second}.  What would the doppler shift be at $\lambda$ = \SI{.03}{\meter}
+      A target is moving away from a radar at \SI{50}{\meter\per\second}. What would the doppler shift be at $\lambda$ = \SI{.03}{\meter}
       \begin{align*}
       f_{D} & = -2\frac{\dot{R}}{\lambda} & (\text{Where $\dot{R}$ is the range rate})\\
       & = -2\frac{\SI{50}{\meter\per\second}}{\SI{.03}{\meter}}\\
@@ -165,12 +165,30 @@
       \end{exercise}
       
       % ---------------------------------------------------------------------------------------- 
-      % FIXME
       \begin{exercise}{12}
       What would the radar cross section of an aluminum sphere of 30 cm diameter be at 2 cm wavelength?
+      
+      Chapter 7, Figure 7-2 Page 248
+      Gives a plot of the Mies series solution of normalized RCS of a perfectly conducting sphere as a function of radius a and wavelength $\lambda$
+      
+      The vertical axis is $\sigma/\pi a^{2}$ and the horizontal is $2\pi a / \lambda$
       \begin{align*}
-      X & = Y\\
-      & = Z
+      X & = 2\pi\frac{ a}{\lambda}\\
+      & = 2\pi\frac{(\SI{30}{\cm})}{(\SI{2}{\cm})}\\
+      & = 94.248\\
+      \end{align*}
+      But, in the limit where $\lambda \ll$ the diameter of the sphere, this approaches 1.
+      \begin{align*}
+      Y &= f(X) \\
+      & = f(94.248)\\
+      & \simeq 1\\
+      \end{align*}
+      Solving for $\sigma$ we find
+      \begin{align*}
+      \frac{\sigma}{\pi a^{2}} & = 1 \\
+      \sigma & = \pi a^{2}\\
+      & = \pi (\SI{0.30}{\meter})^{2}\\
+      & = \SI{0.283}{\meter\squared}
       \end{align*}
       \end{exercise}
       
