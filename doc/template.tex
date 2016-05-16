@@ -1,52 +1,66 @@
-% --------------------------------------------------------------
-% This is all preamble stuff that you don't have to worry about.
-% Head down to where it says "Start here"
-% --------------------------------------------------------------
+% Start preamble
  
  \documentclass[12pt]{article}
   
   \usepackage[margin=1in]{geometry} 
   \usepackage{amsmath,amsthm,amssymb}
   \usepackage{siunitx}
+  \usepackage[table,xcdraw]{xcolor} % needed for the table colors
 
+  % suppress paragraph indent
+  \setlength\parindent{0pt}
+
+  % give some space between paragraphs
+  \setlength{\parskip}{3mm plus1mm minus1mm}
+ 
    \newcommand{\N}{\mathbb{N}}
    \newcommand{\Z}{\mathbb{Z}}
-    
-    \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
-    \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-    \newenvironment{lemma}[2][Lemma]{\begin{trivlist}
-    \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
     \newenvironment{exercise}[2][Exercise]{\begin{trivlist}
     \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-    \newenvironment{reflection}[2][Reflection]{\begin{trivlist}
-    \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-    \newenvironment{proposition}[2][Proposition]{\begin{trivlist}
-    \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-    \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
-    \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
      
+     % end of the preambles
      \begin{document}
       
       % --------------------------------------------------------------
       %                         Start here
       % --------------------------------------------------------------
        
-       %\renewcommand{\qedsymbol}{\filledbox}
+      
         
-	\title{Homework Template}%replace X with the appropriate number
-	\author{Professor Sarah\\ %replace with your name
-	MATH 301 - Introduction to Proof and Abstract Reasoning} %if necessary, replace with your course title
+	\title{Final Exam} 
+	\author{Jonathan King\\ %
+	SASENG1170 - Introduction to Radar Systems} %
 	 
 	 \maketitle
-	  
+
+   \section{Answers}
+   \begin{table}[h]
+     \centering
+     \caption{My caption}
+     \label{my-label}
+     \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      \rowcolor[HTML]{9B9B9B} 
+      Question & Answer & Question & Answer & Question & Answer \\ \hline
+      1        & A      & 6        & A      & 11       & A      \\ \hline
+      2        & A      & 7        & A      & 12       & A      \\ \hline
+      3        & A      & 8        & A      & 13       & A      \\ \hline
+      4        & A      & 9        & A      & 14       & A      \\ \hline
+      5        & A      & 10       & A      & 15       & A      \\ \hline
+     \end{tabular}
+    \end{table}
+
+    \section{Show Your Work...}
+
       % ---------------------------------------------------------------------------------------- 
       \begin{exercise}{1}
       What wavelength corresponds to a frequency of 17Ghz?
       
+      To solve, use the following relationship between wavelength, speed and frequency:
       \begin{align*}
-      \lambda & = \frac{c}{f} & (\text{Relationship between wavelength, speed and frequency})\\
+      \lambda & = \frac{c}{f} \\
       & = \frac{\SI{299792458}{\meter\per\second}}{\SI{17}{\GHz}}\\
-      & = \SI{1.763485047}{\cm}
+      & = \SI{1.763}{\cm}
       \end{align*}
       
       \end{exercise}
@@ -55,14 +69,15 @@
       \begin{exercise}{2}
       What would the gain of a circular antenna with a diameter of 30cm and a wavelength of 1cm be? (Assume 100\% efficiency)
       
+      Use the following relationship between antenna gain, area and wavelength
+      Cite the book here?
       \begin{align*}
-      G_{R} & = 4 \pi \frac{ A_{e} }{\lambda^{2}} & (\text{Relationship between antenna gain, area and wavelength})\\
+      G_{R} & = 4 \pi \frac{ A_{e} }{\lambda^{2}} \\
       & = 4 \pi^{2} \frac{ R^{2}}{\lambda^{2}}\\
       & = 4 \pi^{2} \frac{ (\SI{0.3}{\meter})^{2}}{(\SI{.01}{\meter})^{2}}\\
       & = 4 \pi^{2} \frac{\SI{0.09}{\meter\squared}}{\SI{.0001}{\meter\squared}}\\
       & = \SI{35530.576}{}\\
       \end{align*}      
-            
       \end{exercise}
       
       % ---------------------------------------------------------------------------------------- 
@@ -87,12 +102,14 @@
       \end{exercise}
 
       % ---------------------------------------------------------------------------------------- 
-      % FIXME
       \begin{exercise}{5}
       In problems 14 and 15, what would be the minimum target range with the 10:1 pulse compression?
+
+      The radar in question uses a 10:1 pulse compression code modulation on a \SI{10}{\us} pulse.  Since the radar cannot receive during transmission, the pulse width sets determines the minimum target range.  Even though it employes a 10:1 pulse ratio, the pulses themselves are still \SI{10}{\us} wide.  The pulse must be done transmitting by the time the wavefront of the pulse has hit the target and reflected back to the antenna, therefore $\frac{ 2 R_{min} }{c} = \tau$.  Rearranging for $R_{min}$ we have
       \begin{align*}
-      X & = Y\\
-      & = Z
+      R_{min} & = \frac{\tau * c}{2}\\
+      & = \frac{ (\SI{10}{\us}) (\SI{299792458}{\meter\per\second}) }{ 2 }\\
+      & = \SI{1498.962}{\meter}\\
       \end{align*}
       \end{exercise}
 
@@ -113,14 +130,16 @@
       % ---------------------------------------------------------------------------------------- 
       \begin{exercise}{7}
       A radar has satisfactory detection performance at 50 kM.  How much could the range be increased if the transmitter power were to be doubled?
+
       \begin{align*}
       \frac{P_{t1}G^{2}\lambda^{2}\sigma}{(4\pi)^{3}(R_{1})^{4} k T_{0} B F} & = \frac{(P_{t2})G^{2}\lambda^{2}\sigma}{(4\pi)^{3}(R_{2})^{4} k T_{0} B F}\\
       \frac{P_{t1}}{(R_{1})^{4}} & = \frac{P_{t2}}{(R_{2})^{4}}\\
-      R_{2} & = \left[\frac{P_{t2}(R_{1})^{4})}{P_{t1}}\right]^{\frac{1}{4}}\\
-      R_{2} & = \left[2(R_{1})^{4}\right]^{\frac{1}{4}} & (\text{P$_{t2}$ is twice P$_{t1}$})\\
+      R_{2} & = \left[\frac{P_{t2}(R_{1})^{4})}{P_{t1}}\right]^{\frac{1}{4}} \\
+      % & \text{Remember that} P_{t2} & = 2 P_{t1}\\
+      & = \left[2(R_{1})^{4}\right]^{\frac{1}{4}}\\
 %      R_{2} & = \left[2^{\frac{1}{4}}\right]R_{1}\\
-      R_{2} & = \left[2\right]^{\frac{1}{4}}\SI{50}{\km}\\
-      R_{2} & = \SI{59.460}{\km}
+      & = \left[2\right]^{\frac{1}{4}}\SI{50}{\km}\\
+      & = \SI{59.460}{\km}
       \end{align*}
       \end{exercise}
       
@@ -129,13 +148,60 @@
       What SNR is required for $P_{D}$ = 50\% at a PFA of $10^{-6}$
 
       When $P_{D}$ = 50\%, need to look up a swerling curve
-      According to table 3.2 of book on page 103, the SNR for the case when the $P_{D}$ = 50\% and the PFA of $10^{-6}$ is 11.1 to 12.8 depending upon the type of Swerling model used.
+
+      For a Swerline 1 target in white noise with detection based on only a single sample, we can use equation 3.20 from POMR page 108 says:
+%
+      \begin{align*}
+      P_{D} & = (P_{FA}) ^ {\frac {1} { (1+SNR)} }\\
+      \log{(P_{D})} & = \frac {1} { (1+SNR)} \log{(P_{FA})}\\
+      SNR & = \frac{ \log{( P_{FA} )} } { \log{(P_{D})} } - 1\\
+      & = \frac{ \log{( 10^{-6} )} } { \log{(.50)} } - 1\\
+      & = \frac{-6}{-0.301} - 1\\
+      & = 18.932\\
+      \end{align*}
+      Since this isn't one of the available answers, I conclude that those conditions do not hold for this question. 
+
+      Somewhat confusingly, table 3.2 of book on page 103 includes solutions for the case where the $P_{D}$ = 50\% and the PFA of $10^{-6}$ for Swerling types SW0 through SW4.  In these five cases, the answers range from 11.1 to 12.8 depending upon the type of Swerling model used.  While one of the multiple choice answers agrees with this table, I cannot explain why it does not agree with equation 3.2 given in the previous analysis. 
+
       \end{exercise}
 
       % ---------------------------------------------------------------------------------------- 
-      % FIXME
       \begin{exercise}{9}
       What is the best method for combining multiple pulse echos from the standpoint of detection performance
+
+      Four choices: M of N, Video Integration, Coherent Integration, Pick Largest Echo
+
+      sing efast time sample or multiple samples? in latter case are the data organizaed into one or several CPIS? (p560 of POMR Richards)
+
+      M of N on POMR page 109
+
+
+
+      Pick largest echo is clearly the least effective as it does not rely on any integration to reduce the noise threshold.  Picking the largest echo might indeed pick out a target but, depending upon the treshhold could also trigger on a noise return.
+
+      M of N or so called post detection integration relies on determing a detection at a certain range cell in M out of N pulses. False targets in a range bin that do not satisfy the M of N criteria are not shown to the user.  While this method does an admirable job of pulling weak targets out of background noise, it does not address the doppler shift
+
+
+      Integration is the process of combing multiple smaples of a signal, each contaminated by boise or other interferece, to ``average down the noise'' and obtain a single combined singal-plus-noise sample that has a higher SNR than the individual samples.  Integration can be either coherent, meaning that the singal phase information is used, or noncoherent, meaning that only the magnitude of the signal is processed. (p536)
+
+
+
+
+      Video Integation relies on the phosphors of the screen to ``integrate'' from pulse to pulse as, once energized, they take some time to dim.  While this is at least taking advantage of integration to increase the signal of a real pulse over the background noise and other false targets, it does not allow for selecting a certain threshold.  False targets are still visible, just for less time.
+      
+      Non-coherent video integration 
+      summed across the range bin before thresholding
+      Phase information is disgarded.
+      ``Noncoherent integraiotn is less efficient than coherent integration... because in discarding the data phase, noncoherent integration does not take advantage of all of the information in the data (p538)''
+
+
+
+
+      Coherent integration or coherent video relies on the fact that since the phase of each transmission is continuous and coherent, the resultant echos can be split into the in-phase (I) and quadrature (Q) parts and summed.  When the velocity of a target is known, the phase of each echo can be corrected before the vector sum.  In the non-coherent video integration, a target's amplitude my have summed to zero, but in the non-coherent case, the IQ data is corrected to give the full return of the object. 
+
+      Coherent integration of N data samples increases the SNR by a factor of N.
+
+
       \begin{align*}
       X & = Y\\
       & = Z
@@ -193,42 +259,60 @@
       \end{exercise}
       
       % ---------------------------------------------------------------------------------------- 
-      % FIXME
       \begin{exercise}{13}
-      In problem 3, what would be the minimum doppler filter width
+      In problem 3, what would be the minimum doppler filter width?
+
+      From Stimpson page 299, the minimum achievebale bandwidth a Doppler filter is given by
       \begin{align*}
-      X & = Y\\
-      & = Z
+      BW_{3 dB} & = \frac{1}{t_{int}}
+      \end{align*}
+
+      Recall from problem 3 that the dwell time for a \SI{80}{\degree\per\second} scan with a \SI{3}{\degree} beamwidth is \SI{0.0375}{\second}.  Since the filter integration time can be at most equal to the dwell time, the minimum achieveable filter bandwidth is
+      \begin{align*}
+      BW_{3 dB} & = \frac{1}{ \SI{0.0375}{\second} }
+      &= \SI{26.667}{\Hz}
       \end{align*}
       \end{exercise}
       
       % ---------------------------------------------------------------------------------------- 
-      % FIXME
       \begin{exercise}{14}
       A radar achieves a SNR=10 dB on a particular using a 10 usec unmodulated pulse.  What would the SNR be if we implemented a 10:1 pulse compression code modulation on this pulse?  
+      
+      The radar range equation used for coherent integration is
       \begin{align*}
-      X & = Y\\
-      & = Z
+      SNR = \frac{P_{r}}{P_{n}} = \frac{ P_{t} G^{2} \lambda^{2} \sigma N_{p} }{ (4\pi)^{3} R^{4} k T_{0} B F }
+      \end{align*}
+      where $N_{p}$ is the number of pulses.  Since we already have the SNR in dB, we need only convert the $N_{p}$ into dB and add.
+      \begin{align*}
+      SNR_{10 pulses} &= SNR_{1 pulse} + 10 \log{(N_{p})}\\
+       & = SNR_{1 pulse} + 10 \log{(10)}\\
+       & = \SI{10}{\dB} + \SI{10}{\dB}\\
+       & = \SI{20}{\dB}
       \end{align*}
       \end{exercise}
       
       % ---------------------------------------------------------------------------------------- 
-      % FIXME
       \begin{exercise}{15}
       In the problem 14, what would the range resolution be in meters with the 10:1 pulse compression      
+
+      Without compression, the range resolution would be
       \begin{align*}
-      X & = Y\\
-      & = Z
+      R_{resolution} & = \frac{PulseLength}{2}\\
+      & = \frac{ \tau c }{2}\\
+      & = \frac{ (\SI{10}{\us}) (\SI{299792458}{\meter\per\second}) }{2}\\
+      & = \SI{1498.962}{\meter}\\
+      \end{align*}
+      With 10:1 pulse compression, the range resolution would be
+      \begin{align*}
+      R_{resolution} & = \frac{PulseLength}{2 N_{p}}\\
+      & = \frac{  \tau c }{2 N_{p}}\\
+      & = \frac{ (\SI{10}{\us}) (\SI{299792458}{\meter\per\second}) }{20}\\
+      & = \SI{149.896}{\meter}\\
       \end{align*}
       \end{exercise}
 
-
-
-
-      
-	      
-	      % --------------------------------------------------------------
-	      %     You don't have to mess with anything below this line.
-	      % --------------------------------------------------------------
-	       
-	       \end{document}
+      % --------------------------------------------------------------
+      %     You don't have to mess with anything below this line.
+      % --------------------------------------------------------------
+       
+       \end{document}
