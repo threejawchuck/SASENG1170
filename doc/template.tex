@@ -6,7 +6,7 @@
   \usepackage{amsmath,amsthm,amssymb}
   \usepackage{siunitx}
   \usepackage[table,xcdraw]{xcolor} % needed for the table colors
-  %\usepackage[options]{natbib} % for modifications to the citations
+  %\usepackage{natbib} % for modifications to the citations
 
   % suppress paragraph indent
   \setlength\parindent{0pt}
@@ -45,9 +45,9 @@
       \rowcolor[HTML]{9B9B9B} 
       Question & Answer & Question & Answer & Question & Answer \\ \hline
       1        & B      & 6        & D      & 11       & D      \\ \hline
-      2        & A      & 7        & A      & 12       & C      \\ \hline
+      2        & A      & 7        & A      & 12       & D      \\ \hline
       3        & B      & 8        & D      & 13       & B      \\ \hline
-      4        & D      & 9        & C      & 14       & D      \\ \hline
+      4        & D      & 9        & C      & 14       & C      \\ \hline
       5        & C      & 10       & B      & 15       & C      \\ \hline
      \end{tabular}
     \end{table}
@@ -62,16 +62,16 @@
       To solve, use the following relationship between wavelength, speed and frequency:
       \begin{align*}
       \lambda & = \frac{c}{f} \\
-      & = \frac{\SI{299792458}{\meter\per\second}}{\SI{17}{\GHz}}\\
+      & = \frac{ (\SI{2.998e8}{\meter\per\second}) }{ (\SI{17}{\GHz}) }\\
       & = \SI{1.763}{\cm}
       \end{align*}
       
       \end{exercise}
       
       % ---------------------------------------------------------------------------------------- 
-      % FIX ME
+      % done
       \begin{exercise}{2}
-      What would the gain of a circular antenna with a diameter of 30cm and a wavelength of 1cm be? (Assume 100\% efficiency)
+      What would the gain of a circular antenna with a diameter of \SI{30}{\cm} and a wavelength of \SI{1}{\cm} be? (Assume 100\% efficiency)
       
       The relationship between antenna gain, area and wavelength is found in Equation 2.7 from \cite[p.~63]{POMR}:
       \begin{align*}
@@ -91,7 +91,7 @@
       The relationship between scan rate, beam width and dwell time is found in Equation 12.2 from \cite[p.~88]{POMR}:
       \begin{align*}
       T_{ad} & = \frac{\theta_{3 dB}}{\omega}\\
-      & = \frac{\SI{3}{\degree}}{\SI{80}{\degree\per\second}}\\
+      & = \frac{ (\SI{3}{\degree}) }{ (\SI{80}{\degree\per\second}) }\\
       & = \SI{0.0375}{\second}
       \end{align*}      
       \end{exercise}
@@ -115,8 +115,8 @@
 
       The radar in question uses a 10:1 pulse compression code modulation on a \SI{10}{\us} pulse. Since the radar cannot receive during transmission, the pulse width sets determines the minimum target range. Even though it employs a 10:1 pulse ratio, the pulses themselves are still \SI{10}{\us} wide. The pulse must be done transmitting by the time the wavefront of the pulse has hit the target and reflected back to the antenna, therefore $\frac{ 2 R_{min} }{c} = \tau$. Rearranging for $R_{min}$ we have
       \begin{align*}
-      R_{min} & = \frac{\tau * c}{2}\\
-      & = \frac{ (\SI{10}{\us}) (\SI{299792458}{\meter\per\second}) }{ 2 }\\
+      R_{min} & = \frac{\tau c}{2}\\
+      & = \frac{ (\SI{10}{\us}) (\SI{2.998e8}{\meter\per\second}) }{ 2 }\\
       & = \SI{1498.962}{\meter}\\
       \end{align*}
       \end{exercise}
@@ -128,10 +128,12 @@
 
       A seen in \cite[p.~113]{IAR}, A uniformly illuminated circular aperture of diameter \textit{d} has the following 3 dB beamwidth
       \begin{align*}
-      \Theta_{3 dB} & = 1.02 * \frac{\lambda}{d}\\
-      & = 1.02 * \frac{(\SI{1}{\cm})}{(\SI{30}{\cm})}\\
+      \Theta_{3 dB} & = 1.02 \frac{\lambda}{d}\\
+      & = 1.02 \frac{(\SI{1}{\cm})}{(\SI{30}{\cm})}\\
       & = \SI{0.034}{\radian}\\
-      & = \frac{\SI{180}{\degree}}{\pi}\SI{0.034}{\radian}\\
+      %& = \frac{\SI{180}{\degree}}{\pi}\SI{0.034}{\radian}\\
+      %& = \frac{\SI{180}{\degree} }{ \SI{ \textit{\pi} }{ \radian } }\SI{0.034}{\radian}\\
+      & =  \SI{0.034}{\radian} \left( \frac{\SI{180}{\degree} }{ \SI{\pi}{ \radian } } \right)\\
       & = \SI{1.948}{\degree}
       \end{align*}
       \end{exercise}
@@ -218,7 +220,7 @@
       Using equation 1.14 \cite[p.~22]{POMR}, we see that the unambiguous range is related to the PRF by
       \begin{align*}
       PRF & = \frac{c}{2 R_{unambiguous}}\\
-      & = \frac{\SI{299792.458}{\km\per\second}}{\SI{100}{\km}}\\
+      & = \frac{ (\SI{2.998e8}{\meter\per\second}) }{\SI{100}{\km}}\\
       & = \SI{2997.924}{\Hz}
       \end{align*}
       \end{exercise}
@@ -233,13 +235,13 @@
       The vertical axis is $\sigma/\pi a^{2}$ and the horizontal is $2\pi a / \lambda$. Our first task is calculate the value of the X axis:
       \begin{align*}
       X & = 2\pi\frac{ a}{\lambda}\\
-      & = 2\pi\frac{(\SI{30}{\cm})}{(\SI{2}{\cm})}\\
-      & = 94.248\\
+      & = 2\pi\frac{(\SI{15}{\cm})}{(\SI{2}{\cm})}\\
+      & = 47.124\\
       \end{align*}
       Now we use this to determine Y. Careful analysis of the plot shows that it stops abruptly at $X = 10$, far short of our needs. 
       \begin{align*}
       Y &= f(X) \\
-      & = f(94.248)\\
+      & = f(47.124)\\
       & = ?
       \end{align*}
 
@@ -253,8 +255,8 @@
       \begin{align*}
       \frac{\sigma}{\pi a^{2}} & = 1 \\
       \sigma & = \pi a^{2}\\
-      & = \pi (\SI{0.30}{\meter})^{2}\\
-      & = \SI{0.283}{\meter\squared}
+      & = \pi (\SI{0.15}{\meter})^{2}\\
+      & = \SI{0.071}{\meter\squared}
       \end{align*}
       \end{exercise}
       
@@ -278,7 +280,7 @@
       % ---------------------------------------------------------------------------------------- 
       % Good but not great
       \begin{exercise}{14}
-      A radar achieves a SNR=10 dB on a particular using a 10 usec unmodulated pulse.  What would the SNR be if we implemented a 10:1 pulse compression code modulation on this pulse?  
+      A radar achieves a SNR=10 dB on a particular using a 10 usec unmodulated pulse. What would the SNR be if we implemented a 10:1 pulse compression code modulation on this pulse?
 
       Keeping in mind that this is a intra-pulse modulation and not a simple matter of integrating a number of pulses, we must focus on determining the gain caused by the pulse compression. Equation 2.28 from \cite[p.~74]{POMR} and 20.48 \cite[p.~788]{POMR} show this relationship as
       \begin{align*}
@@ -292,14 +294,23 @@
       &= \SNR_{u} + 10\\
       &= \SI{20}{\dB}\\
       \end{align*}  
-      We know this because 20dB is not one of the available answers!  What is useful is that the text indicates that, ``The net result is a gain i the SNR at the output of the matched filter\cite[p.~788]{POMR}''. Since there is only one answer greater than 10dB, I assume that the answer must be 13dB!  Working backwards, if the pulse bandwith product were known to be 2, we can show that
-      \begin{align*}
-      \SNR_{pc} & = \SNR_{u} (\tau \beta) & \text{(Linear)}\\
-      &= \SNR_{u} + 10 \log {\tau \beta } & \text{(Decibel)}\\
-      &= \SI{10}{\dB} + 10 \log { (2) }\\
-      &= \SI{10}{\dB} + \SI{3.010}{\dB}\\
-      &= \SI{13.010}{\dB}\\
-      \end{align*}
+      We know this is incorrect because 20dB is not one of the available answers!  
+      %Perhaps if the question read, ``what would the change in the SNR be if we implemented a 10:1 compression code modulation on this pulse'' then the answer would clearly be \emph{C} \SI{10}{\dB}. 
+      
+      After further analysis, since the noise density has not changed and the power being broadcast is also constant, then the SNR should remain the same.  The answer should therefore be \emph{C} \SI{10}{\dB}.
+      
+      
+      
+%      Seeings as this is not the case, we will forge on.  A useful passage in the text says, ``The net result is a gain i the SNR at the output of the matched filter\cite[p.~788]{POMR}''. Since there is only one answer greater than 10dB, I assume that the answer must be 13dB!  Working backwards, if the pulse bandwith product were known to be 2, we can show that:
+%      \begin{align*}
+%      \SNR_{pc} & = \SNR_{u} (\tau \beta) & \text{(Linear)}\\
+%      &= \SNR_{u} + 10 \log {\tau \beta } & \text{(Decibel)}\\
+%%      &= \SI{10}{\dB} + 10 \log { (2) }\\
+%      &= \SI{10}{\dB} + \SI{3.010}{\dB}\\
+%      &= \SI{13.010}{\dB}\\
+%      \end{align*}
+      
+%      Of course, this line of reasoning depends on computing the time-bandwidth product to be 2, which I have been unable to demonstrate.  
 
       \end{exercise}
       
@@ -312,14 +323,14 @@
       \begin{align*}
       R_{resolution} & = \frac{PulseLength}{2}\\
       & = \frac{ \tau c }{2}\\
-      & = \frac{ (\SI{10}{\us}) (\SI{299792458}{\meter\per\second}) }{2}\\
+      & = \frac{ (\SI{10}{\us}) (\SI{2.998e8}{\meter\per\second}) }{2}\\
       & = \SI{1498.962}{\meter}\\
       \end{align*}
       With 10:1 pulse compression, the range resolution is simply multiplied by 10:
       \begin{align*}
       R_{resolution} & = \frac{PulseLength}{2 N_{p}}\\
       & = \frac{  \tau c }{2 N_{p}}\\
-      & = \frac{ (\SI{10}{\us}) (\SI{299792458}{\meter\per\second}) }{20}\\
+      & = \frac{ (\SI{10}{\us}) (\SI{2.998e8}{\meter\per\second}) }{20}\\
       & = \SI{149.896}{\meter}\\
       \end{align*}
       \end{exercise}
